@@ -1,0 +1,49 @@
+<div class="row" style="justify-content: center">
+    <div class="card card-user" style="width: 400px;">
+        <div class="card-header">
+            <h5 class="card-title">SignUp</h5>
+        </div>
+        <div class="card-body">
+            <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSignup()" >
+                <div class="form-group">
+                    <label>FirstName</label>
+                    <input type="text" #firstName="ngModel" [(ngModel)]="users.firstName" name="firstName" class="form-control" placeholder="FirstName"
+                           [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required >
+                    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                        <div *ngIf="firstName.errors.required">First Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>LastName</label>
+                    <input type="text" #lastName="ngModel" [(ngModel)]="users.lastName" name="lastName" class="form-control"
+                           placeholder="LastName" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required >
+                    <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                        <div *ngIf="lastName.errors.required">Last Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" [(ngModel)]="users.email" name="email" class="form-control"
+                           placeholder="Email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email >
+                    <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                        <div *ngIf="email.errors.required">Email is required</div>
+                        <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" [(ngModel)]="users.password" name="password" class="form-control"
+                           placeholder="Password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" >
+                    <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                        <div *ngIf="password.errors.required">Password is required</div>
+                        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </div>
+                <div class="update ml-auto mr-auto">
+                    <button type="submit" style="width: -webkit-fill-available;" class="btn btn-primary btn-round">SignUp
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
